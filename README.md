@@ -112,8 +112,12 @@ depending on external data availability.
                 |                   |
                 v                   v
         exceptions_flagged.csv   Visualizations
-                                  heatmap + charts```
+                                  heatmap + charts
+```
+
 ## Project structure
+
+```text
 earnings-exception-pipeline/
 │
 ├── generate_data.py          # reproducible synthetic dataset generator
@@ -127,18 +131,25 @@ earnings-exception-pipeline/
 ├── requirements.txt
 ├── data/
 └── output/
-Running the project
+```
+
+## Running the project
 
 Install dependencies:
 
+```bash
 pip install -r requirements.txt
+```
 
 Run the pipeline:
 
+```bash
 python pipeline.py
+```
 
 The pipeline will:
 
+```text
 fetch data
     ↓
 load data into SQLite
@@ -148,14 +159,17 @@ run six exception rules
 write flagged exceptions
     ↓
 generate visualizations
+```
 
-The generated artifacts are written to output/.
+The generated artifacts are written to `output/`.
 
-Live data ingestion
+## Live data ingestion
 
 The live ingestion script can also be run independently:
 
+```bash
 python fetch_data_live.py
+```
 
 This retrieves the currently available quarterly data from the configured
 companies and writes the standardized raw dataset.
