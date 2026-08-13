@@ -112,4 +112,50 @@ depending on external data availability.
                 |                   |
                 v                   v
         exceptions_flagged.csv   Visualizations
-                                  heatmap + charts
+                                  heatmap + charts```
+## Project structure
+earnings-exception-pipeline/
+│
+├── generate_data.py          # reproducible synthetic dataset generator
+├── fetch_data_live.py        # live yfinance ingestion
+├── db.py                     # SQLite warehouse layer
+├── exceptions.py             # exception-detection rules
+├── pipeline.py               # main pipeline/orchestrator
+├── tests/
+│   └── test_exceptions.py    # unit tests for exception rules
+├── memo.md                   # research memo / investigation notes
+├── requirements.txt
+├── data/
+└── output/
+Running the project
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+Run the pipeline:
+
+python pipeline.py
+
+The pipeline will:
+
+fetch data
+    ↓
+load data into SQLite
+    ↓
+run six exception rules
+    ↓
+write flagged exceptions
+    ↓
+generate visualizations
+
+The generated artifacts are written to output/.
+
+Live data ingestion
+
+The live ingestion script can also be run independently:
+
+python fetch_data_live.py
+
+This retrieves the currently available quarterly data from the configured
+companies and writes the standardized raw dataset.
